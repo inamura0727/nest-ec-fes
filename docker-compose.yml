@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  dev-postgres:
+    image: postgres:14.2-alpine
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_USER: fes
+      POSTGRES_PASSWORD: fes
+      POSTGRES_DB: fes
+    restart: always
+    networks:
+      - lesson
+networks:
+  lesson:
