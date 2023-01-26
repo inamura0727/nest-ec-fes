@@ -25,6 +25,7 @@ model User {
   firstNameKana String
   mailAddress String
   password String
+  passwordTest String
   favoriteId Int?
   category Category? @relation(fields: [favoriteId], references: [categoryId])
   rentalHistories RentalHistory[]

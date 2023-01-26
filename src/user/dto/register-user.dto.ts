@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 import { CIsNotEmpty } from 'src/decorators/standardClassValidators';
 
 export class RegisterUserDto {
@@ -49,4 +49,8 @@ export class RegisterUserDto {
   @IsString()
   @CIsNotEmpty({ propertyName: '必須項目は' })
   password: string;
+
+  @IsString()
+  @CIsNotEmpty({ propertyName: '必須項目は' })
+  passwordTest: string;
 }

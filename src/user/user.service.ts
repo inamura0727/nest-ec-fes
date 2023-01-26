@@ -30,6 +30,7 @@ export class UserService {
           firstNameKana: dto.firstNameKana,
           mailAddress: dto.mailAddress,
           password: dto.password,
+          passwordTest: dto.passwordTest,
         },
       });
       return {
