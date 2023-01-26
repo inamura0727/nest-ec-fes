@@ -10,17 +10,13 @@ export class ItemService {
   async preTop(
     favoritedId: number,
   ): Promise<{ newItems: Item[]; genreItems: Item[] }> {
-    const item = await this.prisma.item.findMany({
+    const newItems = await this.prisma.item.findMany({
       orderBy: {
         itemId: 'desc',
       },
       take: 10,
     });
-    const newItems = item.map((item: Item) => ({
-      ...item,
-      releaseDate: item.releaseDate.toString(),
-    }));
-    const response = await this.prisma.item.findMany({
+    const genreItems = await this.prisma.item.findMany({
       where: {
         categories: {
           has: favoritedId,
@@ -32,14 +28,26 @@ export class ItemService {
       take: 10,
     });
 
-    const genreItems = response.map((item) => ({
-      ...item,
-      releaseDate: item.releaseDate.toString(),
-    }));
-
     return {
       newItems,
       genreItems,
     };
+  }
+
+  async selectGenre(id: number): Promise<Item[]> {
+    console.log('selectGenreきた');
+    const response = await this.prisma.item.findMany({
+      where: {
+        categories: {
+          has: id,
+        },
+      },
+      orderBy: {
+        itemId: 'desc',
+      },
+      take: 10,
+    });
+    console.log(response);
+    return response;
   }
 }
