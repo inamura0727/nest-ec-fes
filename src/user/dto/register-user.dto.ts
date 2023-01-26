@@ -1,24 +1,25 @@
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { CIsNotEmpty } from 'src/decorators/standardClassValidators';
 
 export class RegisterUserDto {
   @IsString()
-  @IsNotEmpty()
+  @CIsNotEmpty({ propertyName: '必須項目は' })
   userName: string;
 
   @IsString()
-  @IsNotEmpty()
+  @CIsNotEmpty({ propertyName: '必須項目は' })
   zipcode: string;
 
   @IsString()
-  @IsNotEmpty()
+  @CIsNotEmpty({ propertyName: '必須項目は' })
   prefecture: string;
 
   @IsString()
-  @IsNotEmpty()
+  @CIsNotEmpty({ propertyName: '必須項目は' })
   city: string;
 
   @IsString()
-  @IsNotEmpty()
+  @CIsNotEmpty({ propertyName: '必須項目は' })
   houseNumber: string;
 
   @IsString()
@@ -26,26 +27,26 @@ export class RegisterUserDto {
   buildingName: string;
 
   @IsString()
-  @IsNotEmpty()
+  @CIsNotEmpty({ propertyName: '必須項目は' })
   familyName: string;
 
   @IsString()
-  @IsNotEmpty()
+  @CIsNotEmpty({ propertyName: '必須項目は' })
   firstName: string;
 
   @IsString()
-  @IsNotEmpty()
+  @CIsNotEmpty({ propertyName: '必須項目は' })
   familyNameKana: string;
 
   @IsString()
-  @IsNotEmpty()
+  @CIsNotEmpty({ propertyName: '必須項目は' })
   firstNameKana: string;
 
   @IsString()
-  @IsNotEmpty()
+  @CIsNotEmpty({ propertyName: '必須項目は' })
   mailAddress: string;
 
   @IsString()
-  @IsNotEmpty()
+  @CIsNotEmpty({ propertyName: '必須項目は' })
   password: string;
 }

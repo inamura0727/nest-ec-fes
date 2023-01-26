@@ -1,11 +1,12 @@
 import { IsNotEmpty, IsString } from 'class-validator';
+import { CIsNotEmpty } from 'src/decorators/standardClassValidators';
 
 export class LoginUserDto {
   @IsString()
-  @IsNotEmpty()
+  @CIsNotEmpty({ propertyName: 'メールアドレスまたはパスワード' })
   mailAddress: string;
 
   @IsString()
-  @IsNotEmpty()
+  @CIsNotEmpty({ propertyName: 'メールアドレスまたはパスワード' })
   password: string;
 }
