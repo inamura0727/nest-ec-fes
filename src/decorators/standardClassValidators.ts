@@ -20,7 +20,7 @@ const buildValidationOptions = (
   let prefixMessage = '';
 
   if (option.validationOptions) validationOptions = option.validationOptions;
-  if (validationOptions.each) prefixMessage = 'それぞれの';
+  if (validationOptions.each) prefixMessage = '';
 
   validationOptions.message = option.errorMessage
     ? option.errorMessage
@@ -33,15 +33,6 @@ export const CIsNotEmpty = (option: CValidateOption): PropertyDecorator => {
     buildValidationOptions(
       option,
       `${option.propertyName}は必ず指定してください`,
-    ),
-  );
-};
-
-export const CIsInt = (option: CValidateOption): PropertyDecorator => {
-  return IsInt(
-    buildValidationOptions(
-      option,
-      `${option.propertyName}は数値を指定してください`,
     ),
   );
 };
