@@ -14,6 +14,14 @@ export class UserService {
     private readonly config: ConfigService,
   ) {}
 
+  async getUserInfo(userId: number) {
+    return this.prisma.user.findUnique({
+      where: {
+        userId,
+      },
+    });
+  }
+
   async register(dto: RegisterUserDto): Promise<Msg> {
     try {
       await this.prisma.user.create({
@@ -30,6 +38,7 @@ export class UserService {
           firstNameKana: dto.firstNameKana,
           mailAddress: dto.mailAddress,
           password: dto.password,
+          passwordTest: dto.passwordTest,
         },
       });
       return {

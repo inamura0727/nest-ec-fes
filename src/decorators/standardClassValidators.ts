@@ -1,4 +1,10 @@
-import { IsNotEmpty, ValidationOptions } from 'class-validator';
+import {
+  IsInt,
+  IsNotEmpty,
+  IsString,
+  Min,
+  ValidationOptions,
+} from 'class-validator';
 
 export type CValidateOption = {
   propertyName: string;
@@ -14,7 +20,7 @@ const buildValidationOptions = (
   let prefixMessage = '';
 
   if (option.validationOptions) validationOptions = option.validationOptions;
-  if (validationOptions.each) prefixMessage = 'それぞれの';
+  if (validationOptions.each) prefixMessage = '';
 
   validationOptions.message = option.errorMessage
     ? option.errorMessage
@@ -27,6 +33,15 @@ export const CIsNotEmpty = (option: CValidateOption): PropertyDecorator => {
     buildValidationOptions(
       option,
       `${option.propertyName}は必ず指定してください`,
+    ),
+  );
+};
+
+export const CIsString = (option: CValidateOption): PropertyDecorator => {
+  return IsString(
+    buildValidationOptions(
+      option,
+      `${option.propertyName}は文字列を指定してください`,
     ),
   );
 };
