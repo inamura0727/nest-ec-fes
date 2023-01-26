@@ -25,4 +25,14 @@ export class ItemController {
   selectGenre(@Param('id', ParseIntPipe) id: number): Promise<Item[]> {
     return this.itemService.selectGenre(id);
   }
+
+  @Get('/allItems')
+  getAllItems() {
+    return this.itemService.getAllItems();
+  }
+
+  @Get('/getItem/:id')
+  getItemById(@Param('id', ParseIntPipe) id: number): Promise<Item | null> {
+    return this.itemService.getItemById(id);
+  }
 }
