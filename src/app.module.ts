@@ -6,6 +6,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { CartModule } from './cart/cart.module';
 import { ConfigModule } from '@nestjs/config';
 import { ItemModule } from './item/item.module';
+import { PaymentModule } from './payment/payment.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { ItemModule } from './item/item.module';
     CartModule,
     ConfigModule.forRoot({ isGlobal: true }),
     ItemModule,
+    PaymentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
