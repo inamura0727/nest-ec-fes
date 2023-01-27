@@ -1,5 +1,7 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { Cart } from 'types/cart';
+import { Item } from 'types/item';
 import { CreateCartDto } from './dto/create-cart.dto';
 
 @Injectable()
@@ -28,6 +30,23 @@ export class CartService {
     await this.prisma.cart.delete({
       where: {
         cartId: cartId,
+      },
+    });
+  }
+
+  async selectCart(
+    userId: number,
+  ): Promise<{ carts: (Cart & { items: Item })[] }> {
+    return await this.prisma.user.findUnique({
+      where: {
+        userId: userId,
+      },
+      select: {
+        carts: {
+          include: {
+            items: true,
+          },
+        },
       },
     });
   }
