@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseIntPipe,
@@ -14,10 +15,18 @@ export class CartController {
   constructor(private readonly cartService: CartService) {}
 
   @Post('add')
-  addCart(@Body() dto: CreateCartDto) {
+  addCart(@Body() dto: CreateCartDto): Promise<{ isAdd: boolean }> {
     return this.cartService.addCart(dto);
   }
-  @Get('add')
+
+  @Delete('delete/:cartId/:userId')
+  deleteCart(
+    @Param('cartId', ParseIntPipe) cartId: number,
+    @Param('userId', ParseIntPipe) userId: number,
+  ): Promise<void> {
+    return this.cartService.deleteCart(cartId, userId);
+  }
+  @Get('delete/:cartId/:userId')
   getHello(): string {
     return this.cartService.getHello();
   }
