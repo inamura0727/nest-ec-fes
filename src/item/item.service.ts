@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { Item } from 'types/item';
 // なんでprisma/clientの型指定だとだめなの？
 import { PrismaService } from 'src/prisma/prisma.service';
-import path from 'path';
 
 @Injectable()
 export class ItemService {
