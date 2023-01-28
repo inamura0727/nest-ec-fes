@@ -19,6 +19,12 @@ export class CartService {
     if (data) return { isAdd: true };
   }
 
+  async transmitCart(dto: CreateCartDto[]) {
+    return await this.prisma.cart.createMany({
+      data: dto,
+    });
+  }
+
   async deleteCart(cartId: number, userId: number): Promise<void> {
     const cartItem = await this.prisma.cart.findUnique({
       where: {

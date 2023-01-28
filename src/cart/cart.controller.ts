@@ -28,6 +28,11 @@ export class CartController {
     return this.cartService.addCart(dto);
   }
 
+  @Post('transmitCart')
+  transmitCart(@Body() dto: CreateCartDto[]) {
+    return this.cartService.transmitCart(dto);
+  }
+
   @Delete('delete/:cartId/:userId')
   deleteCart(
     @Param('cartId', ParseIntPipe) cartId: number,
