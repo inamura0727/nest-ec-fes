@@ -1,11 +1,8 @@
 import { IsNotEmpty } from 'class-validator';
 
-export class createReviewDto {
+export class updateReviewDto {
   @IsNotEmpty()
-  itemId: number;
-
-  @IsNotEmpty()
-  userId: number;
+  reviewId: number;
 
   @IsNotEmpty()
   postTime: string;
