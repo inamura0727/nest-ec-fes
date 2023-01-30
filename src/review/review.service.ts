@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Review } from '@prisma/client';
+import { Review } from 'types/review';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { createReviewDto } from './dto/create-review.dto';
 import { updateReviewDto } from './dto/update-review.dto';
@@ -7,6 +7,32 @@ import { updateReviewDto } from './dto/update-review.dto';
 @Injectable()
 export class ReviewService {
   constructor(private prisma: PrismaService) {}
+
+  async selectReview(
+    itemId: number,
+    orderBy: string,
+    order: string,
+  ): Promise<{ reviews: Review[]; total: number }> {
+    const reviews = await this.prisma.review.findMany({
+      where: {
+        itemId: itemId,
+      },
+      orderBy: {
+        [orderBy]: order,
+      },
+    });
+
+    const total = await this.prisma.review.count({
+      where: {
+        itemId: itemId,
+      },
+    });
+
+    return {
+      reviews: reviews,
+      total: total,
+    };
+  }
 
   async addReview(dto: createReviewDto): Promise<Review> {
     return this.prisma.review.create({
