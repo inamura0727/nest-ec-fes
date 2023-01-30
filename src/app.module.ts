@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { ItemModule } from './item/item.module';
 import { PaymentModule } from './payment/payment.module';
 import { RentalModule } from './rental/rental.module';
+import { SearchModule } from './search/search.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { RentalModule } from './rental/rental.module';
     ItemModule,
     PaymentModule,
     RentalModule,
+    SearchModule,
   ],
   controllers: [AppController],
   providers: [AppService],
