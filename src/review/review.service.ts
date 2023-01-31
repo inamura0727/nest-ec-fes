@@ -51,6 +51,17 @@ export class ReviewService {
     };
   }
 
+  async getReviewById(reviewId: number) {
+    return this.prisma.review.findUnique({
+      where: {
+        reviewId: reviewId,
+      },
+      include: {
+        item: true,
+      },
+    });
+  }
+
   async addReview(dto: createReviewDto): Promise<Review> {
     return this.prisma.review.create({
       data: {

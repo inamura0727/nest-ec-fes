@@ -42,4 +42,9 @@ export class ReviewController {
   updateReview(@Body() dto: updateReviewDto): Promise<Review> {
     return this.reviewService.updateReview(dto);
   }
+
+  @Get(':reviewId')
+  getReviewById(@Param('reviewId', ParseIntPipe) reviewId: number) {
+    return this.reviewService.getReviewById(reviewId);
+  }
 }
