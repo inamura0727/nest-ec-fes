@@ -16,13 +16,21 @@ import { ReviewService } from './review.service';
 export class ReviewController {
   constructor(private readonly reviewService: ReviewService) {}
 
-  @Get(':itemId/:orderBy/:order')
+  @Get(':itemId/:orderBy/:order/:page/:itemPerPage')
   selectReviews(
     @Param('itemId', ParseIntPipe) itemId: number,
     @Param('orderBy') orderBy: string,
     @Param('order') order: string,
+    @Param('page', ParseIntPipe) page: number,
+    @Param('itemPerPage', ParseIntPipe) itemPerPage: number,
   ) {
-    return this.reviewService.selectReview(itemId, orderBy, order);
+    return this.reviewService.selectReview(
+      itemId,
+      orderBy,
+      order,
+      page,
+      itemPerPage,
+    );
   }
 
   @Post('add')

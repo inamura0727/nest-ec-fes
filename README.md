@@ -1,3 +1,15 @@
+## prisma.schema のデータを変更した際
+
+以下のコマンド実行
+
+```
+npx prisma db push (DBスキーマの同期)
+npx(yarn) prisma studio
+npx prisma generate
+```
+
+[参考サイト](https://www.memory-lovers.blog/entry/2021/10/13/113000)
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
@@ -71,4 +83,5 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
 # nest-ec

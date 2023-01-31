@@ -12,14 +12,21 @@ export class ReviewService {
     itemId: number,
     orderBy: string,
     order: string,
-  ): Promise<{ reviews: Review[]; total: number }> {
+    page: number,
+    itemPerPage: number,
+  ) {
+    const skip = (page - 1) * itemPerPage;
     const reviews = await this.prisma.review.findMany({
       where: {
         itemId: itemId,
       },
+      include: {
+        users: true,
+      },
       orderBy: {
         [orderBy]: order,
       },
+      skip: skip,
     });
 
     const total = await this.prisma.review.count({
@@ -28,9 +35,19 @@ export class ReviewService {
       },
     });
 
+    const average = await this.prisma.review.aggregate({
+      where: {
+        itemId: itemId,
+      },
+      _avg: {
+        evaluation: true,
+      },
+    });
+
     return {
       reviews: reviews,
       total: total,
+      average: average,
     };
   }
 
