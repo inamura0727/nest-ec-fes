@@ -13,12 +13,12 @@ export class ChatbotService {
     });
   }
 
-  async selectAnswer(feeling: number, who: number): Promise<{ genre: number }> {
+  async selectAnswer(feel: number, anyone: number): Promise<{ genre: number }> {
     const result = await this.prisma.chatbotAnswer.findUnique({
       where: {
         question1_question2: {
-          question1: feeling,
-          question2: who,
+          question1: feel,
+          question2: anyone,
         },
       },
     });

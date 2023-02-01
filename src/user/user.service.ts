@@ -23,8 +23,23 @@ export class UserService {
     });
   }
 
-  async register(dto: RegisterUserDto): Promise<Msg> {
+  async register(
+    dto: RegisterUserDto,
+  ): Promise<{ result: boolean; message: string }> {
     try {
+      // 同じメールアドレスがある場合はfalseとメッセージを返す
+      const item = await this.prisma.user.findMany({
+        where: {
+          mailAddress: dto.mailAddress,
+        },
+      });
+      if (item[0]) {
+        return {
+          result: false,
+          message: 'このメールアドレスはすでに登録済みです',
+        };
+      }
+
       await this.prisma.user.create({
         data: {
           userName: dto.userName,
@@ -43,6 +58,7 @@ export class UserService {
         },
       });
       return {
+        result: true,
         message: 'ok',
       };
     } catch (error) {

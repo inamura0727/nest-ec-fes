@@ -11,11 +11,11 @@ export class ChatbotController {
     return this.chatService.getChatList();
   }
 
-  @Get('selectAnswer')
+  @Get('selectAnswer/:feel/:anyone')
   selectAnswer(
-    @Param('feelling', ParseIntPipe) feeling: number,
-    @Param('who', ParseIntPipe) who: number,
+    @Param('feel', ParseIntPipe) feel: number,
+    @Param('anyone', ParseIntPipe) anyone: number,
   ) {
-    return this.chatService.selectAnswer(feeling, who);
+    return this.chatService.selectAnswer(feel, anyone);
   }
 }
