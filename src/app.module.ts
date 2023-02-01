@@ -10,6 +10,7 @@ import { PaymentModule } from './payment/payment.module';
 import { RentalModule } from './rental/rental.module';
 import { SearchModule } from './search/search.module';
 import { ReviewModule } from './review/review.module';
+import { ChatbotModule } from './chatbot/chatbot.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ReviewModule } from './review/review.module';
     RentalModule,
     SearchModule,
     ReviewModule,
+    ChatbotModule,
   ],
   controllers: [AppController],
   providers: [AppService],
