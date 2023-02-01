@@ -34,25 +34,23 @@ export class ItemService {
     };
   }
 
-  async selectGenre(id: number): Promise<Item[]> {
+  async selectGenre(genre: number): Promise<Item[]> {
     const response = await this.prisma.item.findMany({
       where: {
         categories: {
-          has: id,
+          has: genre,
         },
       },
       orderBy: {
         itemId: 'desc',
       },
-      take: 10,
+      take: 4,
     });
-    console.log(response);
     return response;
   }
 
   async getAllItems(): Promise<{ params: { id: string } }[]> {
     const response = await this.prisma.item.findMany();
-    // console.log(response);
     const paths = response.map((item: { itemId: number }) => {
       return {
         params: {
@@ -73,5 +71,14 @@ export class ItemService {
       return null;
     }
     return response;
+  }
+
+  async selectNewItem() {
+    return this.prisma.item.findMany({
+      orderBy: {
+        itemId: 'desc',
+      },
+      take: 10,
+    });
   }
 }

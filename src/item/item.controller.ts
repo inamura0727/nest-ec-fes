@@ -21,9 +21,9 @@ export class ItemController {
     return this.itemService.preTop(favoritedId);
   }
 
-  @Get('/selectGenre/:id')
-  selectGenre(@Param('id', ParseIntPipe) id: number): Promise<Item[]> {
-    return this.itemService.selectGenre(id);
+  @Get('/selectGenre/:genre')
+  selectGenre(@Param('genre', ParseIntPipe) genre: number): Promise<Item[]> {
+    return this.itemService.selectGenre(genre);
   }
 
   @Get('/allItems')
@@ -34,5 +34,10 @@ export class ItemController {
   @Get('/getItem/:id')
   getItemById(@Param('id', ParseIntPipe) id: number): Promise<Item | null> {
     return this.itemService.getItemById(id);
+  }
+
+  @Get('/selectNewItem')
+  selectNewItem() {
+    return this.itemService.selectNewItem();
   }
 }
