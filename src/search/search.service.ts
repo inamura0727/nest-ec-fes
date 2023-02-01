@@ -192,9 +192,6 @@ export class SearchService {
         },
       });
     }
-    console.log(items);
-    console.log(count);
-
     return { items: items, count: count };
   }
 }
