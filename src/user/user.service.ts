@@ -6,6 +6,7 @@ import { LoginUserDto } from './dto/login-user.dto';
 import { RegisterUserDto } from './dto/register-user.dto';
 import { Msg } from './interfaces/user.interface';
 import { User } from '@prisma/client';
+import { UpdateUserFavoriteId } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -61,5 +62,16 @@ export class UserService {
       },
     });
     return user;
+  }
+
+  async updateUser(dto: UpdateUserFavoriteId): Promise<User> {
+    return await this.prisma.user.update({
+      where: {
+        userId: dto.id,
+      },
+      data: {
+        favoriteId: dto.genre,
+      },
+    });
   }
 }
