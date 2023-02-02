@@ -29,7 +29,9 @@ export class UserController {
   }
 
   @Post('login')
-  login(@Body() dto: LoginUserDto): Promise<User[]> {
+  login(
+    @Body() dto: LoginUserDto,
+  ): Promise<{ result: boolean; message: string[]; user: User[] }> {
     return this.userService.login(dto);
   }
 

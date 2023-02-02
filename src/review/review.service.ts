@@ -91,4 +91,14 @@ export class ReviewService {
       },
     });
   }
+
+  async selectUserReview(userId: number, id: number): Promise<Review[]> {
+    const result = await this.prisma.review.findMany({
+      where: {
+        userId: userId,
+        itemId: id,
+      },
+    });
+    return result;
+  }
 }

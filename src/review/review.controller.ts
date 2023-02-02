@@ -47,4 +47,12 @@ export class ReviewController {
   getReviewById(@Param('reviewId', ParseIntPipe) reviewId: number) {
     return this.reviewService.getReviewById(reviewId);
   }
+
+  @Get('getUserReview/:userId/:id')
+  selectUserReview(
+    @Param('userId', ParseIntPipe) userId: number,
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<Review[]> {
+    return this.reviewService.selectUserReview(userId, id);
+  }
 }
