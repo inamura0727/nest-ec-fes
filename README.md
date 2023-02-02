@@ -1,3 +1,39 @@
+## Create new NestJS project
+
+```
+$ npm i -g @nestjs/cli
+$ npm i -g yarn
+$ nest new file-name
+# set strict true in tsconfig.json
+```
+
+## Install packages
+
+```
+# prismaをインストール
+$ yarn add -D prisma
+$ yarn add @prisma/client
+$ npx prisma init
+
+# docker-compose.yml を追加
+# コンテナの作成構成
+$ docker compose up -d
+
+
+# 停止中のコンテナを削除
+$ docker compose rm -s -f -v
+
+
+# 編集 DATABASE_URL of .env
+# schema.prismaにmodelを定義
+
+
+# prisma migrate and type generationを実行
+$ npx prisma migrate dev
+$ npx prisma studio
+$ npx prisma generate
+```
+
 ## prisma.schema のデータを変更した際
 
 以下のコマンド実行
