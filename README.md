@@ -1,3 +1,5 @@
+学習用の架空ECサイトのバックエンド側（next-ec-fes）
+
 ## Create new NestJS project
 
 ```
