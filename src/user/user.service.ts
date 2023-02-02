@@ -70,14 +70,28 @@ export class UserService {
     }
   }
 
-  async login(dto: LoginUserDto): Promise<User[]> {
+  async login(
+    dto: LoginUserDto,
+  ): Promise<{ result: boolean; message: string[]; user: User[] }> {
     const user = await this.prisma.user.findMany({
       where: {
         mailAddress: dto.mailAddress,
         password: dto.password,
       },
     });
-    return user;
+    if (!user.length) {
+      return {
+        result: false,
+        message: ['メールアドレスまたはパスワードが間違っています'],
+        user: [],
+      };
+    } else {
+      return {
+        result: true,
+        message: [],
+        user: user,
+      };
+    }
   }
 
   async updateUser(dto: UpdateUserFavoriteId): Promise<User> {
